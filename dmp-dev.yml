@@ -48,7 +48,7 @@ eureka:
   instance:
       prefer-ip-address: true
       #ip-address: 172.31.140.106
-      ip-address: 172.31.179.103
+      ip-address: 172.31.179.105
 
 #REST超时配置
 rest:
