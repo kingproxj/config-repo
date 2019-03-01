@@ -1,0 +1,68 @@
+# eureka:
+#   client:
+#     service-url:
+#       defaultZone: http://127.0.0.1:1001/eureka/
+#       #有时启动失败失因为开了无线网络
+#   instance:
+#       prefer-ip-address: true
+#       ip-address: 127.0.0.1
+
+server:
+  port: 1002
+
+zuul:
+  routes:
+    ocp:
+      path: /ocp/**
+      serverId: ocp
+    dmp:
+      path: /dmp/**
+      serverId: dmp
+      retryable: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        #Hystrix断路器的超时时间，默认是1s，断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试。
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+
+ribbon:
+ # 同一实例最大重试次数，不包括首次调用
+  MaxAutoRetries: 1
+ # 重试其他实例的最大重试次数，不包括首次所选的server
+  MaxAutoRetriesNextServer: 1
+ # 是否所有操作都进行重试
+  OkToRetryOnAllOperations: true
+  ConnectTimeout: 250
+  ReadTimeout: 1000
+
+spring:
+  # application:
+  #   name: apigw
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+    bus:
+      trace:
+         enabled: true
+    stream:
+      #指定用kafka stream来作为默认消息中间件
+      default-binder: kafka
+      kafka:
+        #来自KafkaBinderConfigurationProperties
+        binder:
+          brokers: kafka-master-kafka.default.svc.cluster.local:9092
+          zkNodes: kafka-zookeeper.default.svc.cluster.local:2181
+
+management:
+  security:
+    enabled: false
+
+token:
+  signingKey: iotstp17518
