@@ -43,7 +43,7 @@ eureka:
   client:
     serviceUrl:
       #defaultZone: http://127.0.0.1:1001/eureka/
-      defaultZone: http://eureka.cssc.117.73.2.103.xip.io/
+      defaultZone: http://app-v7bfb75j-instance-h78p9x4q-default-svc:7153/eureka/
 #多网卡需要把这配置开了
   instance:
       prefer-ip-address: true
