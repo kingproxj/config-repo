@@ -18,7 +18,7 @@ spring:
     open-in-view: true
     show-sql: true
   redis:
-    host: redis4-2xrb7j2p-redis4.default.svc.cluster.local
+    host: 172.31.179.121
     port: 6379
     timeout: 3000
     pool:
