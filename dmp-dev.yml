@@ -47,8 +47,7 @@ eureka:
 #多网卡需要把这配置开了
   instance:
       prefer-ip-address: true
-      #ip-address: 172.31.140.106
-      ip-address: 172.31.179.108
+      #ip-address: 172.31.179.108
 
 #REST超时配置
 rest:
